@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {# Bloc title : permet aux pages enfants de définir leur titre #}
+    <title>{% block title %}TD Flask TODO{% endblock %}</title>
+
+    {# Lien vers la feuille de style CSS #}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    {# En-tête de l'application #}
+    <header>
+      <div class="container">
+        <h1>📝 Gestionnaire de Tâches</h1>
+        <p class="subtitle">TD Flask + Jinja2 + SQLAlchemy</p>
+      </div>
+    </header>
+
+    {# Contenu principal : sera rempli par les pages enfants #}
+    <main class="container">
+      {% block content %} {# Ce bloc sera remplacé par le contenu des pages
+      enfants #} {% endblock %}
+    </main>
+
+    {# Pied de page #}
+    <footer>
+      <div class="container">
+        <p>École Supérieure de Technologie d'Essaouira - Filière 3IASD</p>
+        <p class="footer-info">
+          <a href="{{ url_for('api_tasks') }}" target="_blank">API JSON</a> |
+          Développé avec Flask & SQLAlchemy
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

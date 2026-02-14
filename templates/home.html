@@ -1,0 +1,131 @@
+{# Héritage du template de base #} {% extends "base.html" %} {# Définition du
+titre de la page #} {% block title %}Liste des Tâches - TD Flask TODO{% endblock
+%} {# Bloc de contenu principal #} {% block content %}
+<div class="welcome-section">
+  <h2>Bienvenue dans le TD Flask</h2>
+  <p>
+    Cette application de gestion de tâches démontre l'utilisation de Flask,
+    Jinja2 et SQLAlchemy.
+  </p>
+</div>
+
+{# Section : Formulaire d'ajout de tâche #}
+<div class="add-task-section">
+  <h3>➕ Ajouter une nouvelle tâche</h3>
+
+  {# Formulaire utilisant la méthode POST et url_for() pour générer l'URL #}
+  <form action="{{ url_for('add_task') }}" method="POST" class="add-task-form">
+    <input
+      type="text"
+      name="title"
+      placeholder="Entrez une nouvelle tâche..."
+      required
+      maxlength="200"
+      class="task-input"
+    />
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form>
+</div>
+
+{# Section : Liste des tâches #}
+<div class="tasks-section">
+  <h3>📋 Liste des tâches</h3>
+
+  {# Vérification : y a-t-il des tâches ? #} {% if tasks %} {# Statistiques des
+  tâches #}
+  <div class="task-stats">
+    <span class="stat"> Total : <strong>{{ tasks|length }}</strong> </span>
+    <span class="stat">
+      Faites : <strong>{{ tasks|selectattr('done')|list|length }}</strong>
+    </span>
+    <span class="stat">
+      À faire : <strong>{{ tasks|rejectattr('done')|list|length }}</strong>
+    </span>
+  </div>
+
+  {# Liste des tâches avec boucle for #}
+  <ul class="task-list">
+    {% for task in tasks %}
+    <li class="task-item {% if task.done %}task-done{% endif %}">
+      <div class="task-content">
+        {# Icône visuelle selon l'état #}
+        <span class="task-icon">
+          {% if task.done %} ✅ {% else %} ⭕ {% endif %}
+        </span>
+
+        {# Titre de la tâche #}
+        <span class="task-title">
+          {# Condition Jinja2 : si done=True, on barre le texte #} {% if
+          task.done %}
+          <s>{{ task.title }}</s>
+          {% else %} {{ task.title }} {% endif %}
+        </span>
+
+        {# Date de création (bonus) #} {% if task.created_at %}
+        <span class="task-date">
+          {{ task.created_at.strftime('%d/%m/%Y %H:%M') }}
+        </span>
+        {% endif %}
+      </div>
+
+      {# Boutons d'action #}
+      <div class="task-actions">
+        {# Formulaire pour basculer l'état (fait/non fait) #}
+        <form
+          action="{{ url_for('toggle_task', task_id=task.id) }}"
+          method="POST"
+          style="display: inline"
+        >
+          <button
+            type="submit"
+            class="btn btn-small btn-success"
+            title="Changer le statut"
+          >
+            {% if task.done %} ↩️ Réouvrir {% else %} ✔️ Terminer {% endif %}
+          </button>
+        </form>
+
+        {# Formulaire pour supprimer la tâche #}
+        <form
+          action="{{ url_for('delete_task', task_id=task.id) }}"
+          method="POST"
+          style="display: inline"
+        >
+          <button
+            type="submit"
+            class="btn btn-small btn-danger"
+            title="Supprimer"
+            onclick="
+              return confirm(
+                'Êtes-vous sûr de vouloir supprimer cette tâche ?',
+              );
+            "
+          >
+            🗑️ Supprimer
+          </button>
+        </form>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %} {# Message si aucune tâche n'existe #}
+  <div class="no-tasks">
+    <p>📭 Aucune tâche pour le moment.</p>
+    <p>Ajoutez votre première tâche ci-dessus !</p>
+  </div>
+  {% endif %}
+</div>
+
+{# Section informative sur l'API (bonus) #}
+<div class="api-info">
+  <h4>🔗 Accès API</h4>
+  <p>Les tâches sont également disponibles au format JSON :</p>
+  <code
+    >GET
+    <a href="{{ url_for('api_tasks') }}" target="_blank"
+      >{{ url_for('api_tasks', _external=True) }}</a
+    ></code
+  >
+</div>
+
+{% endblock %}

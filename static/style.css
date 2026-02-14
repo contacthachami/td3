@@ -1,0 +1,370 @@
+/* 
+ * TD Flask - Feuille de style
+ * Style minimaliste et professionnel
+ */
+
+/* ================== */
+/* Variables & Reset  */
+/* ================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2563eb;
+  --success-color: #16a34a;
+  --danger-color: #dc2626;
+  --text-color: #1f2937;
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ================== */
+/* Structure générale */
+/* ================== */
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+main {
+  flex: 1;
+  padding: 30px 0;
+}
+
+/* ================== */
+/* En-tête            */
+/* ================== */
+
+header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 25px 0;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 28px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+header .subtitle {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ================== */
+/* Sections           */
+/* ================== */
+
+.welcome-section {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+}
+
+.welcome-section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.welcome-section p {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.add-task-section,
+.tasks-section {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+.add-task-section h3,
+.tasks-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+/* ================== */
+/* Formulaire         */
+/* ================== */
+
+.add-task-form {
+  display: flex;
+  gap: 10px;
+}
+
+.task-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* ================== */
+/* Boutons            */
+/* ================== */
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #15803d;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ================== */
+/* Statistiques       */
+/* ================== */
+
+.task-stats {
+  display: flex;
+  gap: 20px;
+  padding: 12px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.task-stats .stat {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.task-stats .stat strong {
+  color: var(--text-color);
+}
+
+/* ================== */
+/* Liste de tâches    */
+/* ================== */
+
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.task-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow);
+}
+
+.task-item.task-done {
+  opacity: 0.7;
+  background-color: #f0fdf4;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.task-icon {
+  font-size: 20px;
+}
+
+.task-title {
+  font-size: 15px;
+  flex: 1;
+}
+
+.task-date {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-left: 10px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ================== */
+/* Message vide       */
+/* ================== */
+
+.no-tasks {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.no-tasks p {
+  margin-bottom: 8px;
+}
+
+/* ================== */
+/* Section API        */
+/* ================== */
+
+.api-info {
+  background-color: #eff6ff;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #bfdbfe;
+}
+
+.api-info h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.api-info p {
+  font-size: 14px;
+  color: #1e40af;
+  margin-bottom: 8px;
+}
+
+.api-info code {
+  display: block;
+  background-color: #dbeafe;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+.api-info a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.api-info a:hover {
+  text-decoration: underline;
+}
+
+/* ================== */
+/* Pied de page       */
+/* ================== */
+
+footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer p {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.footer-info a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+/* ================== */
+/* Responsive         */
+/* ================== */
+
+@media (max-width: 600px) {
+  .add-task-form {
+    flex-direction: column;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .task-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
