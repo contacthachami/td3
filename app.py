@@ -252,12 +252,11 @@ def init_db():
 # Point d'entrée de l'application
 # ====================
 
-# Initialisation de la base de données au démarrage
-# (Important pour les déploiements en production avec gunicorn)
-init_db()
-
 if __name__ == "__main__":
-    # Lancement de l'application en mode debug (développement local uniquement)
+    # Initialisation de la base de données
+    init_db()
+    
+    # Lancement de l'application en mode debug
     # debug=True permet :
     # - Le rechargement automatique en cas de modification du code
     # - L'affichage détaillé des erreurs dans le navigateur
