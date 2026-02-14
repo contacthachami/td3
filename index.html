@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TD3 Flask TODO - Redirection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .warning-box h2 {
+            color: #856404;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .warning-box p {
+            color: #856404;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .info-box h2 {
+            color: #0c5460;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            color: #0c5460;
+            line-height: 1.6;
+        }
+        
+        .info-box code {
+            background: #bee5eb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        ul {
+            text-align: left;
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">⚠️</div>
+        <h1>Application Flask TODO</h1>
+        <p style="color: #666; margin-bottom: 20px;">École Supérieure de Technologie d'Essaouira - Filière 3IASD</p>
+        
+        <div class="warning-box">
+            <h2>❌ Netlify ne peut pas exécuter cette application</h2>
+            <p><strong>Pourquoi ?</strong></p>
+            <ul>
+                <li><strong>Netlify</strong> = Sites statiques uniquement (HTML, CSS, JavaScript)</li>
+                <li><strong>Cette application</strong> = Flask (Python) = Nécessite un serveur backend</li>
+                <li><strong>Résultat</strong> = Incompatibilité totale</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <h2>✅ Solution : Déployer sur Render.com</h2>
+            <p><strong>Étapes rapides :</strong></p>
+            <ol>
+                <li>Créer un compte sur <a href="https://render.com" target="_blank" style="color: #17a2b8; font-weight: 600;">Render.com</a></li>
+                <li>Connecter votre repository GitHub</li>
+                <li>Créer un "Web Service"</li>
+                <li>Render détecte automatiquement le fichier <code>render.yaml</code></li>
+                <li>Déploiement automatique en 2-3 minutes !</li>
+            </ol>
+        </div>
+        
+        <div style="margin: 30px 0;">
+            <a href="https://render.com/docs/deploy-flask" target="_blank" class="btn">
+                📚 Guide de Déploiement Render
+            </a>
+            <a href="https://github.com/contacthachami/td3" target="_blank" class="btn btn-secondary">
+                📂 Voir le Code Source
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Note :</strong> Les fichiers de configuration Render (<code>render.yaml</code>, <code>requirements.txt</code>) sont déjà présents dans le repository.</p>
+            <p style="margin-top: 10px;">Pour plus d'informations, consultez le fichier <code>RENDER_DEPLOYMENT_STEPS.md</code> dans le repository.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Optionnel : Auto-redirection après 10 secondes
+        // Décommenter si vous déployez sur Render et voulez rediriger automatiquement
+        /*
+        setTimeout(function() {
+            const renderUrl = 'https://td3-flask-todo.onrender.com';
+            if (confirm('Rediriger vers l\'application Flask sur Render ?')) {
+                window.location.href = renderUrl;
+            }
+        }, 5000);
+        */
+    </script>
+</body>
+</html>
